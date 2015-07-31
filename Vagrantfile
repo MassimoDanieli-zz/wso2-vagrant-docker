@@ -26,8 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   ##
-  # A pretty simple scenario. The following is the simplest Docker container that could work. The application is
-  # composed of only a single container
+  # A pretty simple scenario. EBS is listening on port 9443 and APIM on 9445
   ##
 
 ### ESB
