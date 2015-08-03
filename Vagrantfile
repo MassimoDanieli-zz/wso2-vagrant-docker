@@ -8,6 +8,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     default.vm.network "private_network", ip: "192.168.11.11"
     default.vm.network "forwarded_port", guest: 9443, host: 9443
     default.vm.network "forwarded_port", guest: 9445, host: 9445
+    default.vm.network "forwarded_port", guest: 8243, host: 8243
+    default.vm.network "forwarded_port", guest: 8245, host: 8245
     default.vm.synced_folder ".", "/var/www", type: "nfs"
 
     default.vm.provider "virtualbox" do |virtualbox|
