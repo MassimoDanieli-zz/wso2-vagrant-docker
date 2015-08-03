@@ -32,9 +32,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 ### ESB
   config.vm.define "esb", autostart: true do |esb|
     esb.vm.provider "docker" do |docker|
-      docker.image = "massimodanieli/wso2esb"
+      docker.image = "massimodanieli/wso2ebs"
 
-      docker.ports = %w(9443:9443)
+      docker.ports = %w(9443:9443, 9763:9763, 8280:8280, 8243:8243)
 
       docker.vagrant_vagrantfile = __FILE__
     end
@@ -44,7 +44,7 @@ config.vm.define "am", autostart: true do |apim|
     apim.vm.provider "docker" do |docker|
       docker.image = "massimodanieli/wso2apim"
 
-      docker.ports = %w(9445:9443)
+      docker.ports = %w(9445:9443, 9765:9763, 8282:8280, 8245:8243)
 
       docker.vagrant_vagrantfile = __FILE__
     end
