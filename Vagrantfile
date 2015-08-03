@@ -10,6 +10,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     default.vm.network "forwarded_port", guest: 9445, host: 9445
     default.vm.network "forwarded_port", guest: 8243, host: 8243
     default.vm.network "forwarded_port", guest: 8245, host: 8245
+	default.vm.network "forwarded_port", guest: 80, host: 80
+	default.vm.network "forwarded_port", guest: 50000, host: 50000
+	
     default.vm.synced_folder ".", "/var/www", type: "nfs"
 
     default.vm.provider "virtualbox" do |virtualbox|
@@ -34,7 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 ### ESB
   config.vm.define "esb", autostart: true do |esb|
     esb.vm.provider "docker" do |docker|
-      docker.image = "massimodanieli/wso2ebs"
+      docker.image = "massimodanieli/wso2ebs-mysql"
 
       docker.ports = %w(9443:9443, 9763:9763, 8280:8280, 8243:8243)
 
@@ -51,6 +54,17 @@ config.vm.define "am", autostart: true do |apim|
       docker.vagrant_vagrantfile = __FILE__
     end
   end
+  
+ ## Jenkins
+config.vm.define "ci", autostart: true do |ci|
+    ci.vm.provider "docker" do |docker|
+      docker.image = "jenkinsci/jenkins"
+
+      docker.ports = %w(8080:8080, 50000:50000)
+
+      docker.vagrant_vagrantfile = __FILE__
+    end
+  end 
 
 
 end
