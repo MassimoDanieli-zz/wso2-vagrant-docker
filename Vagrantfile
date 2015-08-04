@@ -37,7 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 ### ESB
   config.vm.define "esb", autostart: true do |esb|
     esb.vm.provider "docker" do |docker|
-      docker.image = "massimodanieli/wso2ebs-mysql"
+      docker.image = "massimodanieli/wso2esb-mysql"
 
       docker.ports = %w(9443:9443, 9763:9763, 8280:8280, 8243:8243)
 
