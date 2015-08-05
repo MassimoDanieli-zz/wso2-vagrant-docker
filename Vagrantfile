@@ -6,15 +6,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "default" do |default|
     default.vm.box = "yungsang/boot2docker"
     default.vm.network "private_network", ip: "192.168.11.11"
+    # console port: ESB, API Manager, Application Server
     default.vm.network "forwarded_port", guest: 9443, host: 9443
     default.vm.network "forwarded_port", guest: 9444, host: 9444
     default.vm.network "forwarded_port", guest: 9445, host: 9445
+    #  API MAnager; NIO/PT transport ports
     default.vm.network "forwarded_port", guest: 8243, host: 8243
     default.vm.network "forwarded_port", guest: 8245, host: 8245
+    # jenkins
     default.vm.network "forwarded_port", guest: 80, host: 80
     default.vm.network "forwarded_port", guest: 50000, host: 50000
-    default.vm.network "forwarded_port", guest: 9000, host: 9000
-    default.vm.network "forwarded_port", guest: 9002, host: 9002
+    # HTTP servlet transport: ESB, API Manager, Application Server
+    default.vm.network "forwarded_port", guest: 9763, host: 9763
+    default.vm.network "forwarded_port", guest: 9764, host: 9764
+    default.vm.network "forwarded_port", guest: 9765, host: 9765
 	
     default.vm.synced_folder ".", "/var/www", type: "nfs"
 
