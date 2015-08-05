@@ -58,15 +58,15 @@ config.vm.define "am", autostart: true do |apim|
   end
   
  ## Jenkins
-#config.vm.define "ci", autostart: true do |ci|
-#    ci.vm.provider "docker" do |docker|
-#      docker.image = "jenkinsci/jenkins"
-#
-#      docker.ports = %w(8080:8080, 50000:50000)
-#
-#      docker.vagrant_vagrantfile = __FILE__
-#    end
-#  end 
+config.vm.define "ci", autostart: true do |ci|
+    ci.vm.provider "docker" do |docker|
+      docker.image = "jenkinsci/jenkins"
+
+      docker.ports = %w(8080:8080, 50000:50000)
+
+      docker.vagrant_vagrantfile = __FILE__
+    end
+  end 
 
 
 end
