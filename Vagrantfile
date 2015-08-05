@@ -7,6 +7,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     default.vm.box = "yungsang/boot2docker"
     default.vm.network "private_network", ip: "192.168.11.11"
     default.vm.network "forwarded_port", guest: 9443, host: 9443
+    default.vm.network "forwarded_port", guest: 9444, host: 9444
     default.vm.network "forwarded_port", guest: 9445, host: 9445
     default.vm.network "forwarded_port", guest: 8243, host: 8243
     default.vm.network "forwarded_port", guest: 8245, host: 8245
@@ -56,7 +57,16 @@ config.vm.define "am", autostart: true do |apim|
       docker.vagrant_vagrantfile = __FILE__
     end
   end
-  
+ ### AS Manager
+config.vm.define "as", autostart: true do |as|
+    as.vm.provider "docker" do |docker|
+      docker.image = "massimodanieli/wso2as"
+
+      docker.ports = %w(9444:9443, 9764:9763, 8281:8280, 8244:8243)
+
+      docker.vagrant_vagrantfile = __FILE__
+    end
+  end
  ## Jenkins
 config.vm.define "ci", autostart: true do |ci|
     ci.vm.provider "docker" do |docker|
