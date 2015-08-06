@@ -77,7 +77,7 @@ config.vm.define "as", autostart: true do |as|
 
  ### Governance Registry
 config.vm.define "greg", autostart: true do |greg|
-    as.vm.provider "docker" do |docker|
+    greg.vm.provider "docker" do |docker|
       docker.image = "massimodanieli/wso2gr"
       docker.ports = %w(9446:9443)
       docker.vagrant_vagrantfile = __FILE__
