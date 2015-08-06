@@ -10,6 +10,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     default.vm.network "forwarded_port", guest: 9443, host: 9443
     default.vm.network "forwarded_port", guest: 9444, host: 9444
     default.vm.network "forwarded_port", guest: 9445, host: 9445
+    #GREG
+    wso2esb.vm.network "forwarded_port", guest: 9446, host: 9446
     #  API MAnager; NIO/PT transport ports
     default.vm.network "forwarded_port", guest: 8243, host: 8243
     default.vm.network "forwarded_port", guest: 8245, host: 8245
@@ -72,6 +74,16 @@ config.vm.define "as", autostart: true do |as|
       docker.vagrant_vagrantfile = __FILE__
     end
   end
+
+ ### Governance Registry
+config.vm.define "greg", autostart: true do |greg|
+    as.vm.provider "docker" do |docker|
+      docker.image = "massimodanieli/wso2gr"
+      docker.ports = %w(9446:9443)
+      docker.vagrant_vagrantfile = __FILE__
+    end
+  end
+  
  ## Jenkins
 config.vm.define "ci", autostart: true do |ci|
     ci.vm.provider "docker" do |docker|
