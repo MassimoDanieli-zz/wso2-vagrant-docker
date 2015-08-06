@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     default.vm.network "forwarded_port", guest: 9444, host: 9444
     default.vm.network "forwarded_port", guest: 9445, host: 9445
     #GREG
-    wso2esb.vm.network "forwarded_port", guest: 9446, host: 9446
+    default.vm.network "forwarded_port", guest: 9446, host: 9446
     #  API MAnager; NIO/PT transport ports
     default.vm.network "forwarded_port", guest: 8243, host: 8243
     default.vm.network "forwarded_port", guest: 8245, host: 8245
